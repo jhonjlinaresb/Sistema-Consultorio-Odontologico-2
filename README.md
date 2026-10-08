@@ -1,47 +1,32 @@
-# Sistema-Consultorio-Odontologico
+# Sistema de Consultorio Odontológico — Actividad 2
 
-# Orientaciones de desarrollo
+## Base del proyecto
 
-En la tabla propuesta, el estudiante elaborará un programa que permita la captura de datos básicos de un cliente del consultorio odontológico del doctor “XXX”. Los datos a leer de cada cliente son: Cédula, Nombre, Teléfono, Tipo de Cliente (Particular, EPS, Prepagada), Tipo de Atención (Limpieza, Calzas, Extracción, Diagnóstico), Cantidad, Prioridad de Atención (Normal, Urgente), Fecha de la Cita.
+Este repositorio parte de una copia del proyecto del [primer repositorio](https://github.com/jhonjlinaresb/Sistema-Consultorio-Odontologico). Se toma ese código como base para reutilizar y adaptar las clases, modelos y fragmentos que sean útiles para resolver esta segunda actividad. La aplicación se modificará para incorporar las estructuras de datos solicitadas: una **pila** para las urgencias de extracción y una **cola** para la atención diaria según la agenda.
 
-Para la elaboración de la actividad seguirá las siguientes acciones:
+## Orientaciones de desarrollo
 
-* Calcular el valor de cada cita de acuerdo con los criterios que se observan en la tabla
+El estudiante elegirá o emulará un consultorio odontológico; sobre este, adelantará un plan de contingencia para los clientes que tienen citas pendientes de extracción de piezas dentales y que además tienen carácter urgente. Por lo anterior es necesario diseñar un programa que genere una Pila de clientes para atender directamente en la clínica y los cuales van a ser llamados de acuerdo con los siguientes criterios:
 
-* Aplicar el uso de datos básicos, estructuras básicas y ordenamiento de datos en un lenguaje de programación.
+- Solo serán llamados los clientes que vengan para extracciones dentales.
+- Solo se atenderán además aquellos que tengan una prioridad de “Urgente”.
+- La pila quedará en orden de fecha de la más cercana a la más lejana.
+- Generar un informe de la Pila para que en la clínica puedan llamar a los clientes y atenderlos prioritariamente.
 
-* Elaborar un programa que lea los datos de la cita de cada cliente y calcule el valor del servicio, teniendo en cuenta lo siguiente:
+El consultorio odontológico atenderá diariamente los clientes que llegan, los cuales serán gestionados en el estricto orden que define la agenda. Generar la agenda e ir atendiendo los clientes a través de la implementación de una Cola de atención. El resultado de la actividad será subido a plataforma educativa.
 
-* En cada cita se atiende un solo tipo de atención.
+## Criterios de evaluación
 
-* La cantidad siempre es 1 para la Limpieza y el diagnóstico y cualquier número mayor que cero para las calzas y la extracción de dientes.
+- Completitud en programa elaborado.
+- Resolución de las actividades propuestas.
+- Uso adecuado de las Estructuras de Pilas y Colas.
+- Entrega de programas para la implementación de las Pilas.
+- Entrega de programas para la implementación de las colas.
 
-* El Valor a pagar por el cliente se calcula por la suma del valor de la cita más el valor de la atención por la cantidad.
+## Adaptación prevista
 
-* Leer los datos de varios Clientes del consultorio odontológico y almacenarlos en un arreglo en memoria. Con los datos almacenados calcular:
+Se aprovecharán los componentes existentes del proyecto base que sean pertinentes —por ejemplo, los modelos de cliente y cita, la fecha, el tipo de atención y la prioridad— y se adaptarán o ampliarán para:
 
-  1. Total, Clientes
-
-  2. Ingresos totales recibidos
-
-  3. Número de clientes que van para extracción de dientes.
-
-Es necesario ordenar los clientes del consultorio odontológico en una lista ordenada por el valor de la atención de mayor a menor; posteriormente buscar en la lista ordenada un cliente con una cedula específica. El resultado de la actividad será subido a plataforma educativa.
-
-| Tipo Cliente | Valor Cita | Tipo Atención | Valor Atención | |
-| :--- | :--- | :--- | :--- | :--- |
-| **Particular** | \$80.000 | | | |
-| | | Limpieza | \$60.000 | |
-| | | Calzas | \$80.000 | |
-| | | Extracción | \$100.000 | |
-| | | Diagnóstico | \$50.000 | |
-| **EPS** | \$5.000 | | | |
-| | | Limpieza | \$0 | |
-| | | Calzas | \$40.000 | |
-| | | Extracción | \$40.000 | |
-| | | Diagnóstico | $0 | |
-| **Prepagada** | \$30.000 | | | |
-| | | Limpieza | $0 | |
-| | | Calzas | \$10.000 | |
-| | | Extracción | \$10.000 | |
-| | | Diagnóstico | \$0 | |
+1. Crear e informar una pila que incluya únicamente citas urgentes de extracción, ordenadas por fecha próxima.
+2. Crear la agenda diaria y gestionar la atención de sus clientes mediante una cola, respetando el orden establecido en la agenda.
+3. Probar ambas estructuras con casos que permitan verificar sus filtros y el orden de atención.
