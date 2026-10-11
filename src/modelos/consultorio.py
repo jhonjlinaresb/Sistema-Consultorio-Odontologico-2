@@ -1,3 +1,7 @@
+from datetime import date
+from typing import Optional
+
+from src.estructuras.pila_urgencias import PilaUrgencias
 from src.modelos.cita import Cita
 from src.modelos.tipo_atencion import TipoAtencion
 
@@ -36,3 +40,6 @@ class Consultorio:
             if cita.cliente.cedula == cedula:
                 return cita
         return None
+
+    def crear_pila_urgencias(self) -> PilaUrgencias:
+        return PilaUrgencias(self.citas)
