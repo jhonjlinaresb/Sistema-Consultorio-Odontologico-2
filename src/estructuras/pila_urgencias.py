@@ -1,4 +1,5 @@
 from typing import Iterable, List, Optional
+from src.excepciones.estructura_vacia_error import EstructuraVaciaError
 from src.modelos.cita import Cita
 from src.modelos.prioridad_atencion import PrioridadAtencion
 from src.modelos.tipo_atencion import TipoAtencion
@@ -6,7 +7,7 @@ from src.estructuras.ordenamiento_burbuja import ordenar_por_fecha_burbuja
 
 class PilaUrgencias:
     def __init__(self, citas: Optional[Iterable[Cita]] = None) -> None:
-        self.elementos: List[Cita] = []
+        self._elementos: List[Cita] = []
         if citas is not None:
             self.cargar(citas)
 
@@ -31,14 +32,14 @@ class PilaUrgencias:
         self._elementos = ordenar_por_fecha_burbuja(self._elementos, descendente=True)
         return True
 
-    def desapilar(self) -> Optional[Cita]:
+    def desapilar(self) -> Cita:
         if self.esta_vacia():
-            return None
+            raise EstructuraVaciaError("No se puede desapilar: la pila de urgencias está vacía.")
         return self._elementos.pop()
 
-    def ver_cima(self) -> Optional[Cita]:
+    def ver_cima(self) -> Cita:
         if self.esta_vacia():
-            return None
+            raise EstructuraVaciaError("No se puede ver la cima: la pila de urgencias está vacía.")
         return self._elementos[-1]
 
     def esta_vacia(self) -> bool:

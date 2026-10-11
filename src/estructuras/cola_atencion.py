@@ -1,22 +1,24 @@
 from collections import deque
 from typing import Deque, Iterable, List, Optional
+from src.excepciones.estructura_vacia_error import EstructuraVaciaError
 from src.modelos.cita import Cita
 
 class ColaAtencion:
     def __init__(self, agenda: Optional[Iterable[Cita]] = None) -> None:
-        self._elementos: Deque[Cita] = deque(agenda or())
+        contenido = agenda if agenda is not None else ()
+        self._elementos: Deque[Cita] = deque(contenido)
 
     def encolar(self, cita: Cita) -> None:
         self._elementos.append(cita)
 
-    def atender_siguiente(self) -> Optional[Cita]:
+    def atender_siguiente(self) -> Cita:
         if self.esta_vacia():
-            return None
+            raise EstructuraVaciaError("No se puede atender: la cola de atención está vacía.")
         return self._elementos.popleft()
 
-    def ver_siguiente(self) -> Optional[Cita]:
+    def ver_siguiente(self) -> Cita:
         if self.esta_vacia():
-            return None
+            raise EstructuraVaciaError("No se puede ver el siguiente: la cola de atención está vacía.")
         return self._elementos[0]
 
     def esta_vacia(self) -> bool:
