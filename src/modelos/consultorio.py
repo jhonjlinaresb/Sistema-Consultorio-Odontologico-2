@@ -1,6 +1,6 @@
 from datetime import date
 from typing import Optional
-
+from src.estructuras.cola_atencion import ColaAtencion
 from src.estructuras.pila_urgencias import PilaUrgencias
 from src.modelos.cita import Cita
 from src.modelos.tipo_atencion import TipoAtencion
@@ -43,3 +43,10 @@ class Consultorio:
 
     def crear_pila_urgencias(self) -> PilaUrgencias:
         return PilaUrgencias(self.citas)
+
+    def crear_cola_atencion(self, fecha_agenda: Optional[date] = None) -> ColaAtencion:
+        if fecha_agenda is None:
+            agenda = self.citas
+        else:
+            agenda = [cita for cita in self.citas if cita.fecha == fecha_agenda]
+        return ColaAtencion(agenda)

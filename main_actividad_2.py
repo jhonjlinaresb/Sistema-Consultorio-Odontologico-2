@@ -1,4 +1,5 @@
 from datetime import date
+from src.estructuras.cola_atencion import ColaAtencion
 from src.estructuras.pila_urgencias import PilaUrgencias
 from src.modelos.cita import Cita
 from src.modelos.cliente import Cliente
@@ -39,6 +40,18 @@ def ejecutar_demostracion() -> None:
     while not pila.esta_vacia():
         cita = pila.desapilar()
         print(f"Llamar a {cita.cliente.nombre}, cita del {cita.fecha}.")
+
+    cola: ColaAtencion = consultorio.crear_cola_atencion(fecha_agenda)
+    print(f"\n3) AGENDA DEL {fecha_agenda} Y COLA DE ATENCIÓN")
+    print(cola.generar_informe())
+
+    print("\n4) ATENCIÓN FIFO (primero en la agenda, primero atendido)")
+    while not cola.esta_vacia():
+        cita = cola.atender_siguiente()
+        print(
+            f"Atender a {cita.cliente.nombre}: "
+            f"{cita.tipo_atencion.name} del {cita.fecha}."
+        )
 
 if __name__ == "__main__":
     ejecutar_demostracion()
